@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mars Data</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="jumbotron text-center">
+            <h1>Mission to Mars</h1>
+            <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        </div>
+            <h2>Latest Mars News</h2>
+            <h3>{{ Mars.Title }}</h3>
+                <p>{{ Mars.Content }}</p>
+        <div class="row">
+            <div class="col-md-8">
+                <h2>Featured Mars Image</h2>
+                <img src="{{Mars.Featured_Mars_Image}}" width="900" alt="Mars">
+            </div>
+            <div class="col-md-4">
+                    <h4>Current Weather on Mars</h4>
+                <div class="row">
+                    <p>{{Mars.Mars_Weather}}</p>
+                </div>
+                <div class="row mt-5"></div>
+                <div class="row">
+                    <h4>Mars Facts</h4>
+                </div>
+                    {{Mars.Mars_Facts|safe}}
+            </div>
+        </div>
+        <div class="row"></div>
+
+        <div class="jumbotron">
+                <center>        
+                <h1 class="display-4">Mars Hemispheres</h1>
+                <hr class="my-4">
+                </center>
+            <div class="row mt-5">
+                <div>
+                    {% for hemisphere_image_url in Mars.Mars_Hemispheres %}
+                    <div class="col-lg-6">
+                        <div class="card" style="width: 20rem;">
+                            <img class="card-img-top" src="{{hemisphere_image_url.img_url}}" width="500" alt="Card image cap">
+                            <div class="card-body">
+                              <h4 class="card-title">{{ hemisphere_image_url.title }}</h4>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
